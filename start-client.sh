@@ -1,4 +1,4 @@
 #/bin/bash
 
 cd ~/aethir
-./AethirChecker
+./AethirCheckerCLI
