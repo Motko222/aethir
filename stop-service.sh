@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo systemctl stop aethird
-sudo systemctl status aethird
+sudo systemctl stop aethir-checker
+sudo systemctl status aethir-checker
