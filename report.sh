@@ -2,14 +2,13 @@
 
 source ~/.bash_profile
 
-version=$(cat ~/aethir/log/main-core-api.log | grep "\"ver\" : " | head -1 | awk '{print $3}' | sed 's/\"\|,//g')
-service=$(sudo systemctl status aethird --no-pager | grep "active (running)" | wc -l)
-pid=$(pidof AethirChecker)
+version=$(cat ~/aethir/log/server.log | grep "\"ver\" : " | head -1 | awk '{print $3}' | sed 's/\"\|,//g')
+service=$(sudo systemctl status aethir-checker --no-pager | grep "active (running)" | wc -l)
+pid=$(pidof AethirCheckerService)
 chain="testnet"
 id=aethir-$AETHIR_ID
 bucket=node
 
-#test
 #if [ $service -ne 1 ]
 #then 
 #  status="error";
@@ -19,10 +18,10 @@ bucket=node
 #fi
 
 if [ -z $pid ]
-then 
+then
   status="error";
   message="process not running"
-else 
+else
   status="ok";
 fi
 
