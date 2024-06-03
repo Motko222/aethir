@@ -3,7 +3,7 @@ Description=Aethir Node
 After=network-online.target
 [Service]
 User=root
-WorkingDirectory=/root//aethir
+WorkingDirectory=/root/aethir
 ExecStart=/root/aethir/AethirChecker
 Restart=on-failure
 RestartSec=60
