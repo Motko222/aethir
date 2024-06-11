@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/scripts/aethir/cfg
+source ~/.bash_profile
 
 version=$(cat ~/aethir/log/server.log | grep "\"ver\" : " | head -1 | awk '{print $3}' | sed 's/\"\|,//g')
 service=$(sudo systemctl status aethir-checker --no-pager | grep "active (running)" | wc -l)
