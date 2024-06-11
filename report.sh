@@ -6,21 +6,21 @@ version=$(cat ~/aethir/log/server.log | grep "\"ver\" : " | head -1 | awk '{prin
 service=$(sudo systemctl status aethir-checker --no-pager | grep "active (running)" | wc -l)
 pid=$(pidof AethirCheckerService)
 
-#if [ $service -ne 1 ]
-#then
-#  status="error";
-#  message="service not running"
-#else
-#  status="ok";
-#fi
-
-if [ -z $pid ]
+if [ $service -ne 1 ]
 then
   status="error";
-  message="process not running"
+  message="service not running"
 else
   status="ok";
 fi
+
+#if [ -z $pid ]
+#then
+#  status="error";
+#  message="process not running"
+#else
+#  status="ok";
+#fi
 
 cat << EOF
 {
