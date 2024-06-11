@@ -5,6 +5,9 @@ source ~/scripts/aethir/cfg
 version=$(cat ~/aethir/log/server.log | grep "\"ver\" : " | head -1 | awk '{print $3}' | sed 's/\"\|,//g')
 service=$(sudo systemctl status aethir-checker --no-pager | grep "active (running)" | wc -l)
 pid=$(pidof AethirCheckerService)
+chain=$AETHIR_CHAIN
+network=$AETHIR_NETWORK
+type=$AETHIR_TYPE
 
 if [ $service -ne 1 ]
 then
@@ -24,11 +27,11 @@ fi
 
 cat << EOF
 {
-  "id":"$AETHIR_ID",
+  "id":"$id",
   "machine":"$MACHINE",
-  "chain":"$AETHIR_CHAIN",
-  "network":"$AETHIR_NETWORK",
-  "type":"$AETHIR_TYPE",
+  "chain":"$chain",
+  "network":"$network",
+  "type":"$type",
   "version":"$version",
   "status":"$status",
   "message":"$message",
