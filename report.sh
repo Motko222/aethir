@@ -8,6 +8,9 @@ pid=$(pidof AethirCheckerService)
 chain=$AETHIR_CHAIN
 network=$AETHIR_NETWORK
 type=$AETHIR_TYPE
+owner=$AETHIR_OWNER
+id=$AETHIR_ID
+chain=$AETHIR_CHAIN
 
 if [ $service -ne 1 ]
 then
@@ -31,6 +34,7 @@ cat << EOF
   "machine":"$MACHINE",
   "chain":"$chain",
   "network":"$network",
+  "owner":"$owner",
   "type":"$type",
   "version":"$version",
   "status":"$status",
@@ -50,6 +54,6 @@ then
   --header "Content-Type: text/plain; charset=utf-8" \
   --header "Accept: application/json" \
   --data-binary "
-    report,id=$ID,machine=$MACHINE,owner=$OWNER,grp=$GROUP status=\"$status\",message=\"$message\",version=\"$version\",url=\"$url\",chain=\"$CHAIN\",network=\"$NETWORK\",type=\"$TYPE\" $(date +%s%N)
+    report,id=$id,machine=$MACHINE,owner=$owner,grp=$group status=\"$status\",message=\"$message\",version=\"$version\",url=\"$url\",chain=\"$chain\",network=\"$network\",type=\"$type\" $(date +%s%N)
     "
 fi
