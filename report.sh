@@ -24,11 +24,11 @@ fi
 
 cat << EOF
 {
-  "id":"$ID",
+  "id":"$AETHIR_ID",
   "machine":"$MACHINE",
-  "chain":"$CHAIN",
-  "network":"$NETWORK",
-  "type":"$TYPE",
+  "chain":"$AETHIR_CHAIN",
+  "network":"$AETHIR_NETWORK",
+  "type":"$AETHIR_TYPE",
   "version":"$version",
   "status":"$status",
   "message":"$message",
