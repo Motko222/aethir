@@ -11,6 +11,7 @@ type=$AETHIR_TYPE
 owner=$AETHIR_OWNER
 id=$AETHIR_ID
 chain=$AETHIR_CHAIN
+group=$AETHIR_GROUP
 
 if [ $service -ne 1 ]
 then
