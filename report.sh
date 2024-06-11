@@ -2,7 +2,7 @@
 
 source ~/.bash_profile
 
-version=$(cat ~/aethir/log/server.log | grep "\"ver\" : " | head -1 | awk '{print $3}' | sed 's/\"\|,//g')
+version=$(cat ~/aethir/log/server.log | grep "Initialize Service Version: " | head -1 | awk -F "Initialize Service Version: " '{print $NF}' | awk '{print $1}')
 service=$(sudo systemctl status aethir-checker --no-pager | grep "active (running)" | wc -l)
 pid=$(pidof AethirCheckerService)
 chain=$AETHIR_CHAIN
@@ -12,6 +12,13 @@ owner=$AETHIR_OWNER
 id=$AETHIR_ID
 chain=$AETHIR_CHAIN
 group=$AETHIR_GROUP
+json=$(cat ~/aethir/log/server.log | grep "capacityLimit" | tail -1 | awk -F "Success to send: " '{print $NF}')
+delegated=$(echo $json | jq -r .data.delegatedLicense)
+pending=$(echo $json | jq -r . .data.pendingLicenses)
+checking=$(echo $json | jq -r .data.checking)
+banned=$(echo $json | jq -r .data.banned)
+ready=$(echo $json | jq -r .data.ready)
+
 
 if [ $service -ne 1 ]
 then
@@ -19,6 +26,7 @@ then
   message="service not running"
 else
   status="ok";
+  message="checking $checking pending $pending";
 fi
 
 #if [ -z $pid ]
@@ -42,6 +50,11 @@ cat << EOF
   "message":"$message",
   "service":$service,
   "pid":$pid,
+  "delegated":"$delegated",
+  "pending":"$pending",
+  "checking":"$checking",
+  "banned":"$banned",
+  "ready":"$ready",
   "updated":"$(date --utc +%FT%TZ)"
 }
 EOF
