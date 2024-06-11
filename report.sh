@@ -1,19 +1,17 @@
 #!/bin/bash
 
 source ~/.bash_profile
+source ~/scripts/aethir/cfg
 
 version=$(cat ~/aethir/log/server.log | grep "\"ver\" : " | head -1 | awk '{print $3}' | sed 's/\"\|,//g')
 service=$(sudo systemctl status aethir-checker --no-pager | grep "active (running)" | wc -l)
 pid=$(pidof AethirCheckerService)
-chain="testnet"
-id=aethir-$AETHIR_ID
-bucket=node
 
 #if [ $service -ne 1 ]
-#then 
+#then
 #  status="error";
 #  message="service not running"
-#else 
+#else
 #  status="ok";
 #fi
 
@@ -27,10 +25,11 @@ fi
 
 cat << EOF
 {
-  "id":"$id",
+  "id":"$ID",
   "machine":"$MACHINE",
-  "chain":"$chain",
-  "type":"node",
+  "chain":"$CHAIN",
+  "network":"$NETWORK",
+  "type":"$TYPE",
   "version":"$version",
   "status":"$status",
   "message":"$message",
@@ -44,11 +43,11 @@ EOF
 if [ ! -z $INFLUX_HOST ]
 then
  curl --request POST \
- "$INFLUX_HOST/api/v2/write?org=$INFLUX_ORG&bucket=$bucket&precision=ns" \
+ "$INFLUX_HOST/api/v2/write?org=$INFLUX_ORG&bucket=$INFLUX_BUCKET&precision=ns" \
   --header "Authorization: Token $INFLUX_TOKEN" \
   --header "Content-Type: text/plain; charset=utf-8" \
   --header "Accept: application/json" \
   --data-binary "
-    status,node=$id,machine=$MACHINE status=\"$status\",message=\"$message\",version=\"$version\",url=\"$url\",chain=\"$chain\" $(date +%s%N) 
+    report,id=$ID,machine=$MACHINE,owner=$OWNER,grp=$GROUP status=\"$status\",message=\"$message\",version=\"$version\",url=\"$url\",chain=\"$CHAIN\",network=\"$NETWORK\",type=\"$TYPE\" $(date +%s%N)
     "
 fi
