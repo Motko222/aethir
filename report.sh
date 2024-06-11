@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source ~/.bash_profile
 source ~/scripts/aethir/cfg
 
 version=$(cat ~/aethir/log/server.log | grep "\"ver\" : " | head -1 | awk '{print $3}' | sed 's/\"\|,//g')
