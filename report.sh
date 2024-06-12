@@ -48,6 +48,7 @@ cat << EOF
   "checking":"$checking",
   "banned":"$banned",
   "ready":"$ready",
+  "offline":"$offline",
   "updated":"$(date --utc +%FT%TZ)"
 }
 EOF
