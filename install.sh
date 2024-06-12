@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "This action will purge current instalation!"
-read -p "URL? " url
+echo "Copy download link from https://app.aethir.com/.
+read -p "Link? " url
 
 #wipe
 echo "Wiping old installation..."
