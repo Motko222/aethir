@@ -18,6 +18,7 @@ pending=$(echo $json | jq -r .data.pendingLicenses)
 checking=$(echo $json | jq -r .data.checking)
 banned=$(echo $json | jq -r .data.banned)
 ready=$(echo $json | jq -r .data.ready)
+offline=$(echo $json | jq -r .data.offline)
 
 
 if [ $service -ne 1 ]
@@ -26,7 +27,7 @@ then
   message="service not running"
 else
   status="ok";
-  message="checking $checking pending $pending";
+  message="ready $ready checking $checking pending $pending offline $offline";
 fi
 
 cat << EOF
