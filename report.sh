@@ -29,14 +29,6 @@ else
   message="checking $checking pending $pending";
 fi
 
-#if [ -z $pid ]
-#then
-#  status="error";
-#  message="process not running"
-#else
-#  status="ok";
-#fi
-
 cat << EOF
 {
   "id":"$id",
