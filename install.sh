@@ -16,6 +16,5 @@ wget $url -O aethir.tar
 tar -xvf aethir.tar --strip-components=1
 rm aethir.tar
 
-cd ~
 echo "Installing service..."
 sudo ./install.sh
