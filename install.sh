@@ -17,4 +17,4 @@ tar -xvf aethir.tar --strip-components=1
 rm aethir.tar
 
 echo "Installing service..."
-./install.sh
+sudo ./install.sh
