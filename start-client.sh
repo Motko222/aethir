@@ -7,4 +7,4 @@ echo "aethir license approve -all"
 echo "aethir wallet create"
 
 cd ~/aethir
-./AethirCheckerCLI
+sudo ./AethirCheckerCLI
