@@ -3,4 +3,4 @@
 source ~/.bash_profile
 
 sudo systemctl restart aethir-checker
-sudo systemctl status aethir-checker
+tail -f ~/aethir/log/server.log
