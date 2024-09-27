@@ -15,7 +15,6 @@ then
   message="service not running"
 else
   status="ok";
-  #message="ready $ready checking $checking pending $pending offline $offline";
 fi
 
 cat << EOF
