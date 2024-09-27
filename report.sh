@@ -16,14 +16,6 @@ then
 else
   status="ok";
 fi
-
-cat << EOF
-{
-
-
-}
-EOF
-
 cat >$json << EOF
 {
   "updated":"$(date --utc +%FT%TZ)",
