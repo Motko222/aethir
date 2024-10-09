@@ -10,8 +10,8 @@ service=$(sudo systemctl status aethir-checker --no-pager | grep "active (runnin
 errors=$(cat ~/aethir/log/server.log | grep $(date --utc +%F) | grep -c "rror")
 
 status="ok"
-if [ $service -ne 1 ] && status="error";message="service not running";
-if [ $errors -gt 0 ] && status="warning";message="errors=$errors";
+[ $service -ne 1 ] && status="error";message="service not running";
+[ $errors -gt 0 ] && status="warning";message="errors=$errors";
 
 cat >$json << EOF
 {
