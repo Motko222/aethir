@@ -1,10 +1,10 @@
 #!/bin/bash
 
 echo "This action will purge current instalation!"
-echo "Check latest version here: https://github.com/AethirCloud/checker-client/tree/main"
-read -p "Insert version (e.g. 1.2.0.8): " version
+#echo "Check latest version here: https://github.com/AethirCloud/checker-client/tree/main"
+#read -p "Insert version (e.g. 1.2.0.8): " version
 
-url=https://github.com/AethirCloud/checker-client/raw/main/v$version/AethirCheckerCLI-linux-$version.tar.gz
+#url=https://github.com/AethirCloud/checker-client/raw/main/v$version/AethirCheckerCLI-linux-$version.tar.gz
 
 #wipe
 echo "Wiping old installation..."
@@ -13,8 +13,10 @@ mkdir ~/aethir
 cd ~/aethir
 
 #download
-echo "Downloading binary..."
-wget $url -O aethir.tar
+#echo "Downloading binary..."
+#wget $url -O aethir.tar
+
+cp /root/scripts/aethir/aethir.tar /root/aethir
 tar -xvf aethir.tar --strip-components=1
 rm aethir.tar
 
