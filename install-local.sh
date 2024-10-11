@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo "This action will purge current instalation!"
+read -p "This action will purge current instalation! Continue? " sure
+case $sure in y|Y|yes|YES|Yes) ;; *) exit ;; esac
 
 #wipe
 echo "Wiping old installation..."
