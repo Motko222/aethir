@@ -11,7 +11,7 @@ errors=$(cat ~/aethir/log/server.log | grep $(date --utc +%F) | grep -c "rror")
 
 status="ok"
 [ $service -ne 1 ] && status="error";message="service not running";
-[ $errors -gt 0 ] && status="warning";message="errors=$errors";
+[ $errors -gt 10 ] && status="warning";message="too many errors";
 
 cat >$json << EOF
 {
