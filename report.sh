@@ -9,9 +9,10 @@ version=$(cat ~/aethir/log/server.log | grep "Initialize Service Version: " | he
 service=$(sudo systemctl status aethir-checker --no-pager | grep "active (running)" | wc -l)
 errors=$(cat ~/aethir/log/server.log | grep $(date --utc +%F) | grep -c "rror")
 
-status="ok"
-[ $service -ne 1 ] && status="error";message="service not running";
-[ $errors -gt 10 ] && status="warning";message="too many errors";
+status="ok" && message=""
+[ $errors -gt 10 ] && status="warning" && message="too many errors";
+[ $service -ne 1 ] && status="error" && message="service not running";
+
 
 cat >$json << EOF
 {
