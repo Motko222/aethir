@@ -10,7 +10,7 @@ mkdir ~/aethir
 cd ~/aethir
 
 #copy and untar
-cp /root/scripts/aethir/aethir.tar /root/aethir
+cp /root/scripts/aethir/AethirCheckerCLI-linux-1.0.3.2.tar.gz /root/aethir/aethir.tar
 tar -xvf aethir.tar --strip-components=1
 rm aethir.tar
 
